@@ -21,7 +21,7 @@ class ProductCategory extends Model
 
     public function products()
     {
-        return $this->hasMany(Transaction::class, 'categories_id', 'id'); // relasi tabel product category ke product
+        return $this->hasMany(Product::class, 'categories_id', 'id'); // relasi tabel product category ke product
     }
 
 }
