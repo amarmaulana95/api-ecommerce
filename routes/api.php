@@ -17,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('products', [ProductController::class, 'all']);
 Route::get('categories', [ProductCategoryController::class, 'all']);
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function(){
+    route::get('user', [UserController::class, 'fetch']);
+    route::post('user', [UserController::class, 'updateProfile']);
+    route::post('user', [UserController::class, 'logout']);
+});
